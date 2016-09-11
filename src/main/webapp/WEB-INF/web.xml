@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- Log4j configuration loading -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.xml</param-value>
+	</context-param>
+	<!-- Bootstrapping context loading -->
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value></param-value>
+	</context-param>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>extinguisher.root</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encoding-filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- OpenSessionInView Pattern <filter> <filter-name>hibernateFilter</filter-name> <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class> 
+		<init-param> <param-name>sessionFactoryBeanName</param-name> <param-value>sessionFactory</param-value> </init-param> </filter> <filter-mapping> <filter-name>hibernateFilter</filter-name> 
+		<url-pattern>/*</url-pattern> <dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> </filter-mapping> -->
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>extinguisher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml /WEB-INF/extinguisher-services.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>extinguisher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- defining the DefaultServlet -->
+	<servlet>
+		<servlet-name>DefaultServlet</servlet-name>
+		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/notfound.jsp</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>home.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Spring jsp tag lib -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/spring</taglib-uri>
+			<taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>

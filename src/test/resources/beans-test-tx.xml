@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<!-- enable spring data -->
+	<jpa:repositories base-package="gr.manousos.extinguisher.repository"></jpa:repositories>
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- destroy-method="close" -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<!-- <property name="initialSize" value="5" /> -->
+		<!-- <property name="maxActive" value="20" /> -->
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="packagesToScan" value="gr.manousos.extinguisher.model" />
+	</bean>
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="${hibernate.show_sql}" />
+		<property name="generateDdl" value="${hibernate.hbm2ddl.auto}" />
+		<property name="database" value="${db.vendor}" />
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			</props>
+		</property>
+	</bean>
+</beans>
