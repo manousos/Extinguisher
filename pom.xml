@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>gr.manousos</groupId>
 	<artifactId>extinguisher</artifactId>
-	<name>ExtinguisherMVC</name>
 	<packaging>war</packaging>
+	<name>ExtinguisherMVC</name>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.3.2.RELEASE</org.springframework-version>
@@ -186,7 +188,9 @@
 		</dependency>
 
 	</dependencies>
+
 	<build>
+		<finalName>extinguisher</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -207,11 +211,13 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
+					<finalName>extinguisher</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
 				</configuration>
 			</plugin>
 			<plugin>

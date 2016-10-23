@@ -1,8 +1,10 @@
 /target
 /.settings
-.settings
-.classpath
-.project
+*.settings
+*.classpath
+*.project
 *.jar
 /build
+*.class
+/bin
 
