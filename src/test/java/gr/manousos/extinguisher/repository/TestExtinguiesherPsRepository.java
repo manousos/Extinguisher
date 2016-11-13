@@ -18,6 +18,8 @@ public class TestExtinguiesherPsRepository {
 	private static final String SN = "YZT123";
 	@Autowired
 	private ExtinguiesherPsRepository repository;
+	Long id = null;
+	Extinguisher saved;
 
 	@Test
 	public void testCreateSimpleExtinguisher() {
@@ -28,8 +30,8 @@ public class TestExtinguiesherPsRepository {
 		entity.setIncrementNumber(1);
 		entity.setManufacture("manufacture");
 		entity.setYearBuild(Calendar.getInstance().get(Calendar.YEAR));
-		Extinguisher saved = repository.save(entity);
-
+		saved = repository.save(entity);
+		id = saved.getId();
 		Assert.assertEquals(saved, repository.findOne(saved.getId()));
 	}
 
@@ -37,5 +39,10 @@ public class TestExtinguiesherPsRepository {
 	public void getBySn() {
 		Extinguisher ex = repository.findBybottlePartNumber(SN);
 		Assert.assertNull(ex);
+	}
+
+	@Test
+	public void testDelete() {
+		repository.delete(saved);
 	}
 }

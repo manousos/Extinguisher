@@ -7,6 +7,12 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 
+/**
+ * Δεδομένα διεύθυνσης πελάτη
+ * 
+ * @author manousos
+ *
+ */
 @Entity(name = "contact")
 @Table(name = "ContactInfo")
 public class ContactInfo extends GenericEntity<ContactInfo> {

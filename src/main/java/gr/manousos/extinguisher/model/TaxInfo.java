@@ -7,6 +7,12 @@ import javax.validation.constraints.*;
 
 import org.hibernate.validator.constraints.Length;
 
+/**
+ * Δεδομένα εφορίας
+ * 
+ * @author manousos
+ *
+ */
 @Entity(name = "tax")
 @Table(name = "TaxInfo")
 public class TaxInfo extends GenericEntity<TaxInfo> implements Serializable {
@@ -30,45 +36,95 @@ public class TaxInfo extends GenericEntity<TaxInfo> implements Serializable {
 	private String doy;
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false)
-	private OwnerType ownerAFM;
+	private OwnerType ownerType;
 
+	/**
+	 * Επιστρέφει τον κωδικό πελάτη.
+	 * 
+	 * @return id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * Θέτει τον κωδικό πελάτη.
+	 * 
+	 * @param id
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Θέτει τον πελάτη.
+	 * 
+	 * @return customer
+	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * Επιστρέφει τον πελάτη.
+	 * 
+	 * @param customer
+	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
+	/**
+	 * Επιστρέφει το ΑΦΜ του πελάτη.
+	 * 
+	 * @return afm
+	 */
 	public String getAfm() {
 		return afm;
 	}
 
+	/**
+	 * Θέτει το ΑΦΜ του πελάτη.
+	 * 
+	 * @param afm
+	 */
 	public void setAfm(String afm) {
 		this.afm = afm;
 	}
 
+	/**
+	 * Επιστρέφει τη ΔΟΥ υπαγωγής του πελάτη.
+	 * 
+	 * @return doy
+	 */
 	public String getDoy() {
 		return doy;
 	}
 
+	/**
+	 * Θέτει τη ΔΟΥ υπαγωγής του πελάτη.
+	 * 
+	 * @param doy
+	 */
 	public void setDoy(String doy) {
 		this.doy = doy;
 	}
 
+	/**
+	 * Επιστρέφει τον τύπο του προσώπου.
+	 * 
+	 * @return ownerType
+	 */
 	public OwnerType getOwnerAFM() {
-		return ownerAFM;
+		return ownerType;
 	}
 
-	public void setOwnerAFM(OwnerType ownerAFM) {
-		this.ownerAFM = ownerAFM;
+	/**
+	 * Θέτει τον τύπο του προσώπου.
+	 * 
+	 * @param ownerType
+	 */
+	public void setOwnerAFM(OwnerType ownerType) {
+		this.ownerType = ownerType;
 	}
 }
