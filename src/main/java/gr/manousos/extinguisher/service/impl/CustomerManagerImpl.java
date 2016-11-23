@@ -29,8 +29,12 @@ public class CustomerManagerImpl implements CustomerManager {
 
 	@Override
 	public <S extends Customer> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		entity.getAddress().setCustomer(entity);
+		entity.getJob().setCustomer(entity);
+	
+		Customer c = customerRepo.save(entity);
+
+		return (S) c;
 	}
 
 	@Override

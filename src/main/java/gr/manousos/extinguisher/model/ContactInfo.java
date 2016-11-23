@@ -87,6 +87,8 @@ public class ContactInfo extends GenericEntity<ContactInfo> {
 
 	public void setEmail(String email) {
 		this.email = email;
+		this.contactValue = email;
+		this.type = ContactType.EMAIL;
 	}
 
 	public String getPhone() {
@@ -98,9 +100,8 @@ public class ContactInfo extends GenericEntity<ContactInfo> {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-
-		if (this.type == ContactType.PHONE)
-			this.contactValue = phone;
+		this.contactValue = phone;
+		this.type = ContactType.PHONE;
 	}
 
 	public String getCellPhone() {
@@ -112,9 +113,8 @@ public class ContactInfo extends GenericEntity<ContactInfo> {
 
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
-
-		if (this.type == ContactType.MOBILE)
-			this.contactValue = cellPhone;
+		this.contactValue = cellPhone;
+		this.type = ContactType.MOBILE;
 	}
 
 	@Override

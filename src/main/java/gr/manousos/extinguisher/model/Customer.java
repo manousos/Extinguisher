@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import org.hibernate.validator.constraints.Length;
 
-
 /**
  * Δεδομένα πελάτη
  * 
@@ -53,9 +52,8 @@ public class Customer extends GenericEntity<Customer> {
 	@Column(length = 50)
 	private String companyTitle;
 	@Column(length = 30)
-	@Length(min = 2, max = 30)
 	private String fatherName;
-	
+
 	/**
 	 * Επιστρέφει τον κωδικό πελάτη.
 	 * 

@@ -64,11 +64,51 @@
 				</tr>
 				<tr>
 					<td><spring:message code="label.job" /></td>
-					<td><form:select path="job.title" id="job">
-							<form:option value="NONE" label="--Επιλέξτε--" />
+					<td><form:select path="job.title" id="job"
+							class="demo-default" placeholder="">
+							<form:option value="" label="" />
 							<form:options items="${jobList}" />
 						</form:select></td>
 					<td><form:errors path="job.title" /></td>
+				</tr>
+				<tr>
+					<td><spring:message code="label.Afm" /></td>
+					<td><form:input path="tax[0].afm" /> <form:select
+							path="tax[0].ownerAFM" itemValue="">
+							<form:option value="" label="" />
+							<c:forEach items="${ownerType}" var="type">
+								<c:set value="ownerType.${type}" var="typeMessage" />
+								<form:option value="${type}">
+									<spring:message code="${typeMessage}" />
+								</form:option>
+							</c:forEach>
+						</form:select></td>
+					<td><form:errors path="tax[0].afm" />
+						<form:errors path="tax[0].ownerAFM" /></td>
+				</tr>
+				<tr>
+					<td><spring:message code="label.doy" /></td>
+					<td><form:input path="tax[0].doy" /></td>
+					<td><form:errors path="tax[0].doy" /></td>
+				</tr>
+				<tr>
+					<td><spring:message code="label.Afm" /></td>
+					<td><form:input path="tax[1].afm" /> <form:select
+							path="tax[1].ownerAFM" itemValue="">
+							<form:option value="" label="" />
+							<c:forEach items="${ownerType}" var="type">
+								<c:set value="ownerType.${type}" var="typeMessage" />
+								<form:option value="${type}">
+									<spring:message code="${typeMessage}" />
+								</form:option>
+							</c:forEach>
+						</form:select></td>
+					<td><form:errors path="tax[1].afm" /></td>
+				</tr>
+				<tr>
+					<td><spring:message code="label.doy" /></td>
+					<td><form:input path="tax[1].doy" /></td>
+					<td><form:errors path="tax[1].doy" /></td>
 				</tr>
 			</table>
 		</fieldset>
@@ -100,7 +140,7 @@
 				</tr>
 			</table>
 		</fieldset>
-		
+
 		<fieldset>
 			<legend>
 				<spring:message code="title.contact.table" />
@@ -120,7 +160,7 @@
 					<td><spring:message code="label.cellPhone" /></td>
 					<td><form:input path="contacts[2].cellPhone" /></td>
 					<td><form:errors path="contacts[2].cellPhone" /></td>
-				</tr>				
+				</tr>
 			</table>
 		</fieldset>
 
@@ -131,6 +171,19 @@
 			$('#job').selectize({
 				create : true,
 				sortField : 'text'
+			});
+		});
+
+		$(document).ready(function() {
+			('#activity').selectize({
+				delimiter : ',',
+				persist : false,
+				create : function(input) {
+					return {
+						value : input,
+						text : input
+					}
+				}
 			});
 		});
 	</script>

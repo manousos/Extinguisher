@@ -43,15 +43,17 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<mvc:default-servlet-handler />
 
 	<!-- the application context definition for the extinguisher DispatcherServlet -->
 	<context:component-scan base-package="gr.manousos.extinguisher.web" />
+	<context:component-scan base-package="gr.manousos.extinguisher.validator" />
 	<context:component-scan base-package="gr.manousos.extinguisher.model" />
 	<context:component-scan base-package="gr.manousos.extinguisher.service.impl" />
+	<context:component-scan base-package="gr.manousos.extinguisher.repository" />
 	<context:annotation-config />
 	<mvc:annotation-driven />
-	<context:component-scan base-package="gr.manousos.extinguisher.repository" />
+
 
 </beans:beans>
